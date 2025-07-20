@@ -3,7 +3,7 @@ import os
 import requests
 
 
-load_dotenv(override=True)
+#load_dotenv(override=True)
 
 
 # load pushover token

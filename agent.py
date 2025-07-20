@@ -4,7 +4,7 @@ import os
 import json
 from tools import *
 
-load_dotenv(override=True)
+#load_dotenv(override=True)
 
 # Load the API keys from environment variables
 groq_api_key = os.getenv('GROQ_API_KEY')
