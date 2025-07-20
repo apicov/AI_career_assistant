@@ -41,6 +41,9 @@ class Agent:
                     tool_calls = response.choices[0].message.tool_calls
                     results = self.handle_tool_calls(tool_calls)
                     output_messages.extend(results)
+                    # Add the response to the input messages so that the model can see the context
+                    input_messages.append(response.choices[0].message)
+                    input_messages.extend(results)
                 else:
                     done = True
             except Exception as e:
