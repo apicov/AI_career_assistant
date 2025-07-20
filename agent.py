@@ -22,8 +22,8 @@ class Agent:
         self.model = model    
         self.client = OpenAI(api_key=groq_api_key, base_url="https://api.groq.com/openai/v1")
 
-    def get_response(self, user_input, history):
-        input_messages =  [self.system_prompt] + history + [{"role": "user", "content": user_input}]
+    def get_response(self, messages):
+        input_messages =  [self.system_prompt] + messages
         output_messages = []
         done = False
         while not done:
