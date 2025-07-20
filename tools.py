@@ -12,13 +12,6 @@ pushover_token = os.getenv("PUSHOVER_TOKEN")
 pushover_url = "https://api.pushover.net/1/messages.json"
 
 
-tools_dict = {
-    "record_user_details": record_user_details,
-    "record_unanswerable_question": record_unanswerable_question
-}
-
-tools_json = [record_unanswerable_question_json, record_user_details_json]
-
 def push(message):
     print(f"Push: {message}")
     payload = {"user": pushover_user, "token": pushover_token, "message": message}
@@ -32,7 +25,6 @@ def record_user_details(email, name="Name not provided", notes="not provided"):
 def record_unanswerable_question(question):
     push(f"Recording {question} asked that I couldn't answer")
     return {"recorded": "ok"}
-
 
 
 record_user_details_json = {
@@ -81,3 +73,10 @@ record_unanswerable_question_json = {
         }
     }
 }
+
+tools_dict = {
+    "record_user_details": record_user_details,
+    "record_unanswerable_question": record_unanswerable_question
+}
+
+tools_json = [record_unanswerable_question_json, record_user_details_json]
