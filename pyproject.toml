@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages]
+find = {include = ["ai_assistant"]}
+
+[project]
+name = "ai_assistant"
+version = "0.1.0"
+description = "AI Career Assistant"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+
+dependencies = [
+    "openai",
+    "requests",
+    "python-dotenv"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "black",
+    "flake8"
+]
+
+#[project.scripts]
+#ai-assistant = "assistant.agent:main"
+

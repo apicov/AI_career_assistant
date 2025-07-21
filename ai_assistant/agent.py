@@ -1,8 +1,8 @@
 from openai import OpenAI
 import os
 import json
-from tools import *
-from .config import Config
+from ai_assistant.tools import *
+from ai_assistant import Config
 
 class Agent:
     def __init__(self, tools_dict, tools_json, system_prompt, model="llama-3.3-70b-versatile"):

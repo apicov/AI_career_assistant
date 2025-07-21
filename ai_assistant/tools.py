@@ -1,6 +1,6 @@
 import os
 import requests
-from .config import Config
+from ai_assistant import Config
 
 
 pushover_url = "https://api.pushover.net/1/messages.json"
