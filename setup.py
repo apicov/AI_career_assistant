@@ -7,7 +7,6 @@ setup(
     install_requires=[
         "openai>=1.0.0",  # or whatever dependencies you have
         "requests",
-        "dotenv",
     ],
     python_requires=">=3.8",
 )

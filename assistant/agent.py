@@ -2,7 +2,7 @@ from openai import OpenAI
 import os
 import json
 from tools import *
-
+from .config import Config
 
 class Agent:
     def __init__(self, tools_dict, tools_json, system_prompt, model="llama-3.3-70b-versatile"):
@@ -11,7 +11,7 @@ class Agent:
         self.system_prompt = {"role": "system", "content": system_prompt}
 
         self.model = model    
-        self.client = OpenAI(api_key=GROQ_API_KEY, base_url="https://api.groq.com/openai/v1")
+        self.client = OpenAI(api_key=Config.GROQ_API_KEY, base_url="https://api.groq.com/openai/v1")
 
     def get_response(self, messages):
         input_messages =  [self.system_prompt] + messages
