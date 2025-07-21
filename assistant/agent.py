@@ -1,16 +1,7 @@
 from openai import OpenAI
-from dotenv import load_dotenv
 import os
 import json
 from tools import *
-
-#load_dotenv(override=True)
-
-# Load the API keys from environment variables
-groq_api_key = os.getenv('GROQ_API_KEY')
-
-if not groq_api_key:
-    print("Groq API Key not set (and this is optional)")
 
 
 class Agent:
@@ -20,7 +11,7 @@ class Agent:
         self.system_prompt = {"role": "system", "content": system_prompt}
 
         self.model = model    
-        self.client = OpenAI(api_key=groq_api_key, base_url="https://api.groq.com/openai/v1")
+        self.client = OpenAI(api_key=GROQ_API_KEY, base_url="https://api.groq.com/openai/v1")
 
     def get_response(self, messages):
         input_messages =  [self.system_prompt] + messages
