@@ -5,7 +5,19 @@ from ai_assistant.tools import *
 from ai_assistant import Config
 
 class Agent:
+    """
+    Base agent class for LLM-powered assistants. Handles message flow, tool usage, and LLM interaction.
+    """
     def __init__(self, tools_dict, tools_json, system_prompt, model="llama-3.3-70b-versatile"):
+        """
+        Initialize the Agent with tools, prompt, and model configuration.
+
+        Args:
+            tools_dict (dict): Mapping of tool names to callable functions.
+            tools_json (list): List of tool schemas for LLM function calling.
+            system_prompt (str or dict): System prompt for the LLM.
+            model (str): Model name to use for completions.
+        """
         self.tools = tools_dict
         self.tools_json = tools_json
         self.system_prompt = {"role": "system", "content": system_prompt}
@@ -14,6 +26,14 @@ class Agent:
         self.client = OpenAI(api_key=Config.GROQ_API_KEY, base_url="https://api.groq.com/openai/v1")
 
     def get_response(self, messages):
+        """
+        Generate a response from the LLM, handling tool calls as needed.
+
+        Args:
+            messages (list): List of message dicts (role/content) for the conversation history.
+        Returns:
+            list: List of response message dicts from the LLM and tools.
+        """
         input_messages =  [self.system_prompt] + messages
         output_messages = []
         done = False
@@ -43,6 +63,14 @@ class Agent:
         return output_messages
 
     def handle_tool_calls(self, tool_calls):
+        """
+        Handle tool calls requested by the LLM, invoking the appropriate functions.
+
+        Args:
+            tool_calls (list): List of tool call objects from the LLM response.
+        Returns:
+            list: List of tool response message dicts.
+        """
         results = []
         for tool_call in tool_calls:
             tool_name = tool_call.function.name

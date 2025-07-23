@@ -7,16 +7,40 @@ pushover_url = "https://api.pushover.net/1/messages.json"
 
 
 def push(message):
+    """
+    Send a push notification with the given message using Pushover.
+
+    Args:
+        message (str): The message to send.
+    """
     print(f"Push: {message}")
     payload = {"user": Config.PUSHOVER_USER, "token": Config.PUSHOVER_TOKEN, "message": message}
     requests.post(pushover_url, data=payload)
 
 
 def record_user_details(email, name="Name not provided", notes="not provided"):
+    """
+    Record a user's contact details and interest, sending a push notification.
+
+    Args:
+        email (str): The user's email address.
+        name (str, optional): The user's name. Defaults to "Name not provided".
+        notes (str, optional): Additional notes or context. Defaults to "not provided".
+    Returns:
+        dict: Confirmation of recording.
+    """
     push(f"Recording interest from {name} with email {email} and notes {notes}")
     return {"recorded": "ok"}
 
 def record_unanswerable_question(question):
+    """
+    Record a question that cannot be answered, sending a push notification.
+
+    Args:
+        question (str): The unanswerable question text.
+    Returns:
+        dict: Confirmation of recording.
+    """
     push(f"Recording {question} asked that I couldn't answer")
     return {"recorded": "ok"}
 

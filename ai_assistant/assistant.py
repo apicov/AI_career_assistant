@@ -3,11 +3,35 @@ from ai_assistant.tools import *
 
 
 class Assistant(Agent):
+    """
+    AI-powered professional assistant that represents a candidate, manages inquiries, and facilitates initial conversations.
+    Inherits from Agent and customizes the system prompt and behavior for professional representation.
+    """
     def __init__(self, name, last_name, summary, resume):
+        """
+        Initialize the Assistant with candidate details and documents.
+
+        Args:
+            name (str): Candidate's first name.
+            last_name (str): Candidate's last name.
+            summary (str): Professional summary text.
+            resume (str): Resume text (Markdown or plain text).
+        """
         system_prompt = self.get_prompt(name, last_name, summary, resume)
         Agent.__init__(self, tools_dict, tools_json, system_prompt, model="llama-3.3-70b-versatile")
 
     def get_prompt(self, name, last_name, summary, resume):
+        """
+        Generate the system prompt for the assistant, embedding candidate details and behavioral rules.
+
+        Args:
+            name (str): Candidate's first name.
+            last_name (str): Candidate's last name.
+            summary (str): Professional summary text.
+            resume (str): Resume text.
+        Returns:
+            str: The formatted system prompt for the LLM.
+        """
         return f"""You are a professional AI assistant representing {name} {last_name}. You help manage inquiries and facilitate initial conversations with potential employers, collaborators, and professional contacts.
 
 ## YOUR ROLE:
