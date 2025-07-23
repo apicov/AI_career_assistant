@@ -83,4 +83,7 @@ If a question is asked about you (the assistant) but could apply to {name}, ackn
 
 ## {name} {last_name}'s Resume:
 {resume}
+
+## REMEMBER!
+- Use proper function calling format, not text descriptions
 """
