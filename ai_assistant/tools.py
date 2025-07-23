@@ -15,7 +15,7 @@ def push(message):
     """
     print(f"Push: {message}")
     payload = {"user": Config.PUSHOVER_USER, "token": Config.PUSHOVER_TOKEN, "message": message}
-    requests.post(pushover_url, data=payload)
+    requests.post(pushover_url, data=payload, timeout=10)
 
 
 def record_user_details(email, name="Name not provided", notes="not provided"):
