@@ -2,6 +2,10 @@ import os
 from typing import Optional
 
 class Config:
+    """
+    Configuration loader for environment variables required by the assistant.
+    Loads and validates all necessary API keys and user information.
+    """
     # Load all environment variables
     GROQ_API_KEY: Optional[str] = os.getenv('GROQ_API_KEY')
     PUSHOVER_USER: Optional[str] = os.getenv('PUSHOVER_USER')  
@@ -12,7 +16,9 @@ class Config:
 
     @classmethod
     def validate(cls):
-        """Validate all required environment variables"""
+        """
+        Validate all required environment variables. Raises ValueError if any are missing.
+        """
         missing_vars = []
 
         # Check each required variable
