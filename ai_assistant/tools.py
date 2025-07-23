@@ -29,7 +29,7 @@ def record_user_details(email, name="Name not provided", notes="not provided"):
     Returns:
         dict: Confirmation of recording.
     """
-    push(f"Recording interest from {name} with email {email} and notes {notes}")
+    push(f"name:{name},email:{email},notes {notes}")
     return {"recorded": "ok"}
 
 def record_unanswerable_question(question):
@@ -41,7 +41,7 @@ def record_unanswerable_question(question):
     Returns:
         dict: Confirmation of recording.
     """
-    push(f"Recording {question} asked that I couldn't answer")
+    push(f"no_answer:{question}")
     return {"recorded": "ok"}
 
 
